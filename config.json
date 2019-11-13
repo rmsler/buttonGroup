@@ -1,0 +1,19 @@
+{
+        "buttons":[
+        {
+            "Name": "Button1",
+            "Selected": true,
+            "CustomClass": "red"
+        },
+        {
+            "Name": "Button2",
+            "Selected": false,
+            "CustomClass": "blue"
+        },
+        {
+            "Name": "Button3",
+            "Selected": true,
+            "CustomClass": "green"
+        }
+    ]
+}
