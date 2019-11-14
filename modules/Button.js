@@ -1,5 +1,5 @@
 
-var Button = function(config, changeStateCallback) {
+function Button(config, changeStateCallback) {
     if (!(this instanceof Button)) { 
         return new Button(config, changeStateCallback);
     }

@@ -1,4 +1,4 @@
-var GroupButton = function(array){
+function GroupButton(array){
     if (!(this instanceof GroupButton)) { 
         return new GroupButton(array);
       }
@@ -8,9 +8,19 @@ var GroupButton = function(array){
 GroupButton.prototype.changeMode = function() {
     $.each(this.array, function (index, value){
         value.state = false;
-        console.log(value);
     });
     return this.array;
+}
+
+GroupButton.prototype.renderElements = function(node) {
+    // parent.appendChild(child);
+    $.each(this.array, function (index, value){
+        let child = document.createElement("div");
+        child.classList.add(value.class).add(value.state);
+        let textchild = document.createTextNode(value.name);
+        child.appendChild(textchild);    
+        node.appendChild(child);
+    });
 }
 GroupButton.prototype.clickButton = function(index) {
     if(this.array[index].state === false){
