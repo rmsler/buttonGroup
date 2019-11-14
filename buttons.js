@@ -1,7 +1,7 @@
 var Button = function(config) {
     if (!(this instanceof Button)) { 
         return new Button(config);
-      }
+    }
     this.name = config.Name || "button";
     this.state = config.Selected ;
     this.class = config.CustomClass
@@ -10,6 +10,9 @@ var Button = function(config) {
     };
 };
 var GroupButton = function(array){
+    if (!(this instanceof GroupButton)) { 
+        return new GroupButton(array);
+      }
     this.array = array;
     this.changeMode = () =>{
         $.each(this.array, function (index, value){
@@ -53,5 +56,6 @@ $(document).ready(function(){
         ($(this).text('Checkboxes'), $(this).removeClass("radios").addClass("checkboxes"), group.changeMode()) :  
         ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"), group.changeMode())
     });
+    $(".btn-group").
 });
 
