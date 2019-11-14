@@ -7,10 +7,13 @@ var Button = function(config, changeStateCallback) {
     this.state = config.Selected ;
     this.class = config.CustomClass;
     this.changeStateCallback = changeStateCallback;
-    this.onClick = () => {
-        this.state = !this.state;
-        this.changeStateCallback();
-    };
-    this.init = () =>{};
 };
+Button.prototype.onClick = function() {
+    this.state = !this.state;
+    this.changeStateCallback();
+}
+Button.prototype.init = () =>{
+    
+}
+
 export { Button };

@@ -3,10 +3,9 @@ import {GroupButton} from "./modules/GroupButton.js"
 
 var group;
 
-var userdata = $.getJSON("config.json", (data) => {
-    let values = data["buttons"];
+var userdata = $.getJSON("config.json", function(data) {
     let buttons = new Array();
-    $.each(values, function (index, value){
+    $.each(data["buttons"], function (index, value){
         buttons[index] = new Button(value, this.updateGroupSelection);
         console.log(buttons[index]);
     });
@@ -20,4 +19,3 @@ $(document).ready(function(){
         ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"), group.changeMode())
     });
 });
-
