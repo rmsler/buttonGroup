@@ -28,6 +28,13 @@ var GroupButton = function(array){
         this.array[index].state = !this.array[index].state;
         return this.array;
     }
+    this.returnNamesForState = (state) =>{
+        let buttons = new Array();
+        $.each(this.array, function (index, value){
+            if (value.state === state) buttons.push(value.name)  ;
+        });
+        return buttons;
+    }
 }
 var group;
 var userdata = $.getJSON("config.json", function (data) {
