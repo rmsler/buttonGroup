@@ -9,7 +9,7 @@ var Button = function(config) {
         this.state = !this.state;
     };
 };
-var GroupButton = function(array, mode){
+var GroupButton = function(array){
     this.array = array;
     this.changeMode = () =>{
         $.each(this.array, function (index, value){
@@ -18,9 +18,9 @@ var GroupButton = function(array, mode){
         return this.array;
     }
     this.clickButton = (index) =>{
-        if(this.array[index] === false){
-            if(mode !== 'checkboxes'){
-                $.each(array, function (counter,value){
+        if(this.array[index].state === false){
+            if($(".button-type").text().toLowerCase() !== 'checkboxes'){
+                $.each(this.array, function (counter,value){
                     value.state = false
                 });
             }
@@ -37,16 +37,14 @@ var userdata = $.getJSON("config.json", function (data) {
         buttons[index] = new Button(value);
         console.log(buttons[index]);
     });
-    let state = $(".button-type").text().toLowerCase();
-    group = new GroupButton(buttons, state);
+    group = new GroupButton(buttons);
     console.log(buttons);
-    console.log(typeof(buttons));
 });
 $(document).ready(function(){
     $(".button-type").click(function(){
         $(this).text() === 'Radio buttons' ? 
         ($(this).text('Checkboxes'), $(this).removeClass("radios").addClass("checkboxes"), group.changeMode()) :  
-        ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"))
+        ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"), group.changeMode())
     });
 });
 
