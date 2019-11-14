@@ -56,6 +56,5 @@ $(document).ready(function(){
         ($(this).text('Checkboxes'), $(this).removeClass("radios").addClass("checkboxes"), group.changeMode()) :  
         ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"), group.changeMode())
     });
-    $(".btn-group").
 });
 
