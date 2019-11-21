@@ -4,7 +4,7 @@ function Button(config, changeStateCallback) {
         return new Button(config, changeStateCallback);
     }
     this.name = config.Name || "button";
-    this.state = config.Selected ;
+    this.state = config.Selected ? "active" : "inactive" ;
     this.class = config.CustomClass;
     this.changeStateCallback = changeStateCallback;
 };
