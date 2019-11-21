@@ -8,12 +8,10 @@ function Button(config, changeStateCallback) {
     this.class = config.CustomClass;
     this.changeStateCallback = changeStateCallback;
 };
-Button.prototype.onClick = function() {
-    this.state = !this.state;
-    this.changeStateCallback();
-}
-Button.prototype.init = () =>{
-    
-}
-
+Object.assign(Button.prototype, {
+    onClick: function(event) {
+        this.state = !this.state;
+        this.changeStateCallback(event.target);
+    }
+});
 export { Button };
