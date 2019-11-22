@@ -16,7 +16,6 @@ Object.assign(GroupButton.prototype, {
             btnArray[index] = new Button(value, this.changeMode);
             
         });
-        console.log("here is the node:" + node);
         console.log(btnArray);
         //render (construct dom elements)
             this.renderElements(node, btnArray);
@@ -30,18 +29,16 @@ Object.assign(GroupButton.prototype, {
     },
     renderElements : function(node, array) {
         // parent.appendChild(child);
-        console.log(String(node));  
         $.each(array, function (index, value){
             console.log(value);
             let child = document.createElement("div");
-            let insertNode = $("body").find(node);
             child.classList.add(value.class);
             child.classList.add("btn");
             child.classList.add(value.state);
             let textchild = document.createTextNode(value.name);
             child.appendChild(textchild);  
             console.log($('body').find(node));  
-            insertNode.append(child);
+            $(node).append(child);
         });
     },
     clickButton : function(index) {
