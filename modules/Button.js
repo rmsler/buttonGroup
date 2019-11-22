@@ -3,7 +3,7 @@ function Button(config, changeStateCallback) {
     if (!(this instanceof Button)) { 
         return new Button(config, changeStateCallback);
     }
-    this.name = config.Name || "button";
+    this.name = config.Name || "Button";
     this.state = config.Selected ? "active" : "inactive" ;
     this.class = config.CustomClass;
     this.changeStateCallback = changeStateCallback;

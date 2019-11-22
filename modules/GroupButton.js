@@ -36,8 +36,7 @@ Object.assign(GroupButton.prototype, {
             child.classList.add("btn");
             child.classList.add(value.state);
             let textchild = document.createTextNode(value.name);
-            child.appendChild(textchild);  
-            console.log($('body').find(node));  
+            child.appendChild(textchild);
             $(node).append(child);
         });
     },
