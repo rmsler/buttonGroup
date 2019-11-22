@@ -4,12 +4,6 @@ import {GroupButton} from "./modules/GroupButton.js"
 var group = new Object();
 
 $.getJSON("config.json", function(data) {
-    // let buttons = new Array();
-    // $.each(data["buttons"], function (index, value){
-    //     buttons[index] = new Button(value, this.updateGroupSelection);
-    // });
-    // group = new GroupButton(buttons);
-    // console.log(group);
     group = new GroupButton(data);
     group.init(".btn-group-toggle");
 });

@@ -12,9 +12,9 @@ Object.assign(GroupButton.prototype, {
     init: function(node) {
     //iterate and construct models
         let btnArray = new Array();
+        let changeModeCallback = this.changeMode;
         $.each(this.buttonsArray["buttons"], function (index, value){
-            btnArray[index] = new Button(value, this.changeMode);
-            
+            btnArray[index] = new Button(value, changeModeCallback);
         });
         console.log(btnArray);
         //render (construct dom elements)
@@ -30,7 +30,7 @@ Object.assign(GroupButton.prototype, {
     renderElements : function(node, array) {
         // parent.appendChild(child);
         $.each(array, function (index, value){
-            console.log(value);
+            console.log(value, index);
             let child = document.createElement("div");
             child.classList.add(value.class);
             child.classList.add("btn");
@@ -38,12 +38,13 @@ Object.assign(GroupButton.prototype, {
             let textchild = document.createTextNode(value.name);
             child.appendChild(textchild);
             $(node).append(child);
+            child.addEventListener("click", value.onClick.bind(value), false);
         });
     },
     clickButton : function(index) {
         if(this.buttonsArray[index].state === false){
             if($(".button-type").text().toLowerCase() !== 'checkboxes'){
-                $.each(this.buttonsArray, function (counter,value){
+                $.each(this.buttonsArray, function (counter, value){
                     value.state = false
                 });
             }

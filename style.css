@@ -2,3 +2,18 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.btn{
+  color:black;
+  border:1px solid #CCC;
+  background:gray;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  cursor:pointer;
+  vertical-align:middle;
+  padding: 5px;
+  margin: 0 20px;
+  text-align: center;
+}
+.btn.active{
+    background:rgb(235, 36, 79);
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}

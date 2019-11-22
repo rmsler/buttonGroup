@@ -12,7 +12,7 @@
         },
         {
             "Name": "Button3",
-            "Selected": true,
+            "Selected": false,
             "CustomClass": "green"
         }
     ]
