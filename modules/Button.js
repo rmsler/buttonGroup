@@ -4,14 +4,15 @@ function Button(config, changeStateCallback) {
         return new Button(config, changeStateCallback);
     }
     this.name = config.Name || "Button";
-    this.state = config.Selected ? "active" : "inactive" ;
+    this.state = config.Selected ;
     this.class = config.CustomClass;
     this.changeStateCallback = changeStateCallback;
 };
 Object.assign(Button.prototype, {
     onClick: function(event) {
         this.state = !this.state;
-        this.changeStateCallback(event.target);
+        console.log(event.target.className);
+        this.changeStateCallback(event.target.className);
     }
 });
 export { Button };
