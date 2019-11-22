@@ -11,7 +11,8 @@ $.getJSON("config.json", function(data) {
     // group = new GroupButton(buttons);
     // console.log(group);
     group = new GroupButton(data);
-    group.init($(".btn-group-toggle"));
+    let node = ".btn-group-toggle";
+    group.init(node);
 });
 
 $(document).ready(function(){
