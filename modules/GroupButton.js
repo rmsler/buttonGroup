@@ -49,14 +49,28 @@ Object.assign(GroupButton.prototype, {
             if($(".button-type").text().toLowerCase() !== 'checkboxes'){
                 $.each(this.btnArray, function (counter, value){
                     value.state = false
-                    console.log("counter:" + counter);
+                    console.log("counter:" + counter + "value state: " + value.state);
+                    $(".btn").removeClass("true").addClass("false");
                 });
+                let elem = ".button"+ index;
+                $(elem).removeClass("false").addClass("true");
+            }
+            else{
+                let elem = ".button"+ index;
+                console.log($(elem));
+                $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
+                console.log($(elem));
             }
         }
-        let elem = ".button"+ index;
-        console.log($(elem));
-        $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
-        console.log($(elem));
+        else
+        {
+            let elem = ".button"+ index;
+            console.log($(elem));
+            $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
+            console.log($(elem));
+        }
+        // this.btnArray[index].state = !this.btnArray[index].state;
+       
         // return this.buttonsArray;
     },
     returnNamesForState : function(state) {
