@@ -1,82 +1,70 @@
-import {Button} from "./Button.js"
+import {Button} from "./Button.js";
+
 function GroupButton(buttonsArray){
     if (!(this instanceof GroupButton)) { 
         return new GroupButton(buttonsArray);
     }
     this.buttonsArray = buttonsArray;
     this.btnArray = [];
+    this.mode = null;
     // this.init();
+}
+
+GroupButton.modes = {
+    CHECKBOX: "checkboxes",
+    RADIO: "radio"
 }
 
 Object.assign(GroupButton.prototype, {
     init: function(node) {
     //iterate and construct models
+        let defaultMode = GroupButton.modes.CHECKBOX;
         let btnArray = this.btnArray;
         let changeModeCallback = this.clickButton.bind(this);
         $.each(this.buttonsArray["buttons"], function (index, value){
             btnArray[index] = new Button(value, changeModeCallback);
         });
-        // console.log(btnArray);
-        //render (construct dom elements)
-            this.renderElements(node, btnArray);
-            //before attaching nodes, label them
+        this.mode = defaultMode;
+        this.renderElements(node, btnArray);
+
     },
-    changeMode : function() {
-        $.each(this.btnArray, function (index, value){
-            value.state = false;
-        });
-        $(".btn").removeClass("true").addClass("false");
-        // return this.buttonsArray;
+    toggleMode : function(event) {
+        let toggleDomReference = event.target;
+        if (this.mode === GroupButton.modes.CHECKBOX) {
+            this.mode = GroupButton.modes.RADIO;
+        } else if (this.mode === GroupButton.modes.RADIO) {
+            this.mode = GroupButton.modes.CHECKBOX;
+        }
+        toggleDomReference.innerHTML = this.mode;
+        this.resetButtonsState();
     },
-    renderElements : function(node, array) {
+    isRadio: function() {
+        return this.mode === GroupButton.modes.RADIO;
+    },
+    renderElements : function(wrapper, array) {
         $.each(array, function (index, value){
-            // console.log(value, index);
-            let child = document.createElement("div");
-            child.classList.add(value.class);
-            child.classList.add("btn");
-            child.classList.add(value.state);
-            child.classList.add("button"+index);
-            let textchild = document.createTextNode(value.name);
-            child.appendChild(textchild);
-            $(node).append(child);
-            child.addEventListener("click", value.onClick.bind(value), false);
+            let button = value.render(index);
+            $(wrapper).append(button);
         });
     },
+
+    resetButtonsState: function() {
+        this.btnArray.forEach(btn => {
+            btn.state = false;
+            btn.updateVisual();
+        })
+    },
+
     clickButton : function(element) {
         let index = element[element.search("button") + 6];
-        // console.log("state: " + this.btnArray[index].state);
-        if(this.btnArray[index].state === false){
-            if($(".button-type").text().toLowerCase() !== 'checkboxes'){
-                $.each(this.btnArray, function (counter, value){
-                    value.state = false
-                    // console.log("counter:" + counter + "value state: " + value.state);
-                    $(".btn").removeClass("true").addClass("false");
-                });
-                let elem = ".button"+ index;
-                $(elem).removeClass("false").addClass("true");
-            }
-            else{
-                let elem = ".button"+ index;
-                $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
-            }
-        }
-        else
-        {
-            let elem = ".button"+ index;
-            $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
-        }
-        // this.btnArray[index].state = !this.btnArray[index].state;
-       
-        // return this.buttonsArray;
-    },
-    returnNamesForState : function(state) {
-        let buttons = new Array();
-        $.each(this.buttonsArray, function (index, value){
-            if (value.state === state) buttons.push(value.name)  ;
-        });
-        return buttons;
+        let boundResetState = this.resetButtonsState.bind(this);
+        
+        if(this.isRadio()) {
+            boundResetState();
+            this.btnArray[index].state = true;
+        } 
+        
     }
-    
 });
 
 export { GroupButton };

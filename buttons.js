@@ -10,9 +10,7 @@ $.getJSON("config.json", function(data) {
 
 $(document).ready(function(){
     // group.renderElements($(".btn-group"));
-    $(".button-type").click(function(){
-        $(this).text() === 'Radio buttons' ? 
-        ($(this).text('Checkboxes'), $(this).removeClass("radios").addClass("checkboxes"), group.changeMode()) :  
-        ($(this).text('Radio buttons'),$(this).removeClass("checkboxes").addClass("radios"), group.changeMode())
+    $(".button-type").click(function(event){
+        group.toggleMode(event);
     });
 });
