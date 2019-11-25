@@ -16,7 +16,7 @@ Object.assign(GroupButton.prototype, {
         $.each(this.buttonsArray["buttons"], function (index, value){
             btnArray[index] = new Button(value, changeModeCallback);
         });
-        console.log(btnArray);
+        // console.log(btnArray);
         //render (construct dom elements)
             this.renderElements(node, btnArray);
             //before attaching nodes, label them
@@ -44,12 +44,12 @@ Object.assign(GroupButton.prototype, {
     },
     clickButton : function(element) {
         let index = element[element.search("button") + 6];
-        console.log("state: " + this.btnArray[index].state);
+        // console.log("state: " + this.btnArray[index].state);
         if(this.btnArray[index].state === false){
             if($(".button-type").text().toLowerCase() !== 'checkboxes'){
                 $.each(this.btnArray, function (counter, value){
                     value.state = false
-                    console.log("counter:" + counter + "value state: " + value.state);
+                    // console.log("counter:" + counter + "value state: " + value.state);
                     $(".btn").removeClass("true").addClass("false");
                 });
                 let elem = ".button"+ index;
@@ -57,17 +57,13 @@ Object.assign(GroupButton.prototype, {
             }
             else{
                 let elem = ".button"+ index;
-                console.log($(elem));
                 $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
-                console.log($(elem));
             }
         }
         else
         {
             let elem = ".button"+ index;
-            console.log($(elem));
             $(elem).removeClass(String(this.btnArray[index].state)).addClass(String(!this.btnArray[index].state));
-            console.log($(elem));
         }
         // this.btnArray[index].state = !this.btnArray[index].state;
        

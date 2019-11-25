@@ -10,7 +10,7 @@ function Button(config, changeStateCallback) {
 };
 Object.assign(Button.prototype, {
     onClick: function(event) {
-        console.log("clasName: "+ event.target.className);
+        // console.log("clasName: "+ event.target.className);
         this.changeStateCallback(event.target.className);
         this.state = !this.state;
     }
