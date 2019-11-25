@@ -25,6 +25,7 @@ Object.assign(GroupButton.prototype, {
         $.each(this.btnArray, function (index, value){
             value.state = false;
         });
+        $(".btn").removeClass("true").addClass("false");
         // return this.buttonsArray;
     },
     renderElements : function(node, array) {
